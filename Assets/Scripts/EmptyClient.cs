@@ -2,28 +2,19 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class ClientCamera : NetworkBehaviour {
+public class EmptyClient : NetworkBehaviour {
 
-	public Camera myCamera;
 
 	void Start(){
 
 		if (isLocalPlayer) {
 			transform.parent = GameObject.Find ("Player").transform;
 			transform.localPosition = Vector3.zero;
+			GameObject.Find ("Camera 2").SetActive (false);
 		} else {
-			myCamera.enabled = false;
+
+
 		}
-
 	}
-
-
-
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
 }
