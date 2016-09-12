@@ -1,46 +1,53 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class CustomNetworkManager : NetworkManager {
 
 	public Transform hostCentre;
 	public Transform camLeft;
+	public Transform camCentre;
 	public Transform camRight;
 
-	public Transform GetStartPosition(){
+	public GameObject hostPrefab;
+
+	public new Transform GetStartPosition(){
 		return getTarget (numPlayers);
 	}
 
 	private Transform getTarget( int c ) {
 		if (c == 0) {
 			return hostCentre;
-		} else if( c == 1 ){
+		} else if (c == 1) {
 			return camLeft;
+		} else if (c == 2) {
+			return camCentre;
 		} else {
 			return camRight;
 		}
 
 	}
-		
-		
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
 	{
 
 		int c = numPlayers;
-		Transform spawn = GetStartPosition();
+	
+		Transform spawnTransform = GetStartPosition();
+	
+		GameObject player;
 
-		var player = (GameObject)GameObject.Instantiate(playerPrefab, spawn.position, spawn.rotation);
-
-
-		ClientCamera cc = (ClientCamera)player.GetComponent ("ClientCamera");
-		cc.target = getTarget (c);
-
+		if (c == 0) {
+			player = (GameObject)GameObject.Instantiate(hostPrefab, spawnTransform.position, spawnTransform.rotation);
+			player.transform.parent = hostCentre;
+		} else {
+			player = (GameObject)GameObject.Instantiate(playerPrefab, spawnTransform.position, spawnTransform.rotation);
+			ClientCamera cc = (ClientCamera)player.GetComponent ("ClientCamera");
+			cc.target = getTarget (c);
+		}
+			
 		NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-
-
-		//player.transform.position = new Vector3 (playerCount * 2.0f, 0.0f, 0.0f);
-
+	
 	}
 }

@@ -1,40 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
+[NetworkSettings(channel=0,sendInterval=0.02f)]
 public class ClientCamera : NetworkBehaviour {
 
 	public Camera myCamera;
-	public float speed = 0.2f;
+	public float posSpeed = 3.0f;
+	public float rotSpeed = 15.0f;
 
 	[SyncVar]
 	public Transform target;
 
-
 	void Start(){
-
-		if (isLocalPlayer) {
-			
-		} else {
-			
-			//In the Client's Scene, cameras that don't belong to the Player are disabled
+		if (!isLocalPlayer) {
+			//In the Client's Scene, cameras that don't belong to this specific Player are disabled
 			myCamera.enabled = false;
 		}
-
 	}
-
-
-
-
+		
+	public void setText( string s ){
+		Text t = GetComponentInChildren<Text> ();
+		t.text = s;
+	}
+		
 	void Update(){
 
-		if (!isLocalPlayer) {
+		if (!isLocalPlayer)
 			return;
-		}
+	
+		if (!target)
+			return;
+		
+		transform.position = Vector3.MoveTowards(transform.position, target.position, posSpeed * Time.deltaTime);
+		transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, rotSpeed * Time.deltaTime);
 
-		float step = speed * Time.deltaTime;
-		transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-		transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, step * 5.0f);
 	}
 
 }
