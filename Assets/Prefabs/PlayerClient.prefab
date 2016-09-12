@@ -33,7 +33,7 @@ GameObject:
   - 114: {fileID: 11438696}
   - 114: {fileID: 11447282}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerClient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +217,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186136}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &9258316
 Behaviour:
   m_ObjectHideFlags: 1
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.1
+  m_SendInterval: 0.03448276
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
