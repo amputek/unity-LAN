@@ -12,7 +12,7 @@ public class MouseLook : NetworkBehaviour
 	Vector2 _smoothMouse;
 
 	public Vector2 clampInDegrees = new Vector2(360, 180);
-	public bool lockCursor;
+	public CursorLockMode cursorMode;
 	public Vector2 sensitivity = new Vector2(2, 2);
 	public Vector2 smoothing = new Vector2(3, 3);
 
@@ -25,6 +25,7 @@ public class MouseLook : NetworkBehaviour
 
 	// Assign this if there's a parent object controlling motion, such as a Character Controller.
 	// Yaw rotation will affect this object instead of the camera if set.
+	[SyncVar]
 	public GameObject characterBody;
 
 	void Start()
@@ -40,13 +41,16 @@ public class MouseLook : NetworkBehaviour
 		if (characterBody) targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
 	}
 
+
+
 	void Update()
 	{
 		if (!isServer)
 			return;
 
 		// Ensure the cursor is always locked when set
-		//Screen.lockCursor = lockCursor;
+		Cursor.lockState = cursorMode;
+		Cursor.visible = (CursorLockMode.Locked != cursorMode);
 
 		// Allow the script to clamp based on a desired target value.
 		var targetOrientation = Quaternion.Euler(targetDirection);
