@@ -10,8 +10,6 @@ public class CustomNetworkManager : NetworkManager {
 	public Transform camCentre;
 	public Transform camRight;
 
-	public GameObject hostPrefab;
-
 	public new Transform GetStartPosition(){
 		return getTarget (numPlayers);
 	}
@@ -20,34 +18,55 @@ public class CustomNetworkManager : NetworkManager {
 		if (c == 0) {
 			return hostCentre;
 		} else if (c == 1) {
-			return camLeft;
+			return camCentre;
 		} else if (c == 2) {
 			return camCentre;
 		} else {
 			return camRight;
 		}
-
 	}
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
 	{
 
-		int c = numPlayers;
+		bool isHost = numPlayers == 0;
+		bool irVisible = numPlayers == 1;
+
+
 	
 		Transform spawnTransform = GetStartPosition();
 	
-		GameObject player;
+		GameObject player = (GameObject)GameObject.Instantiate(playerPrefab, spawnTransform.position, spawnTransform.rotation);
+		ClientCamera client = (ClientCamera)player.GetComponent ("ClientCamera");
 
-		if (c == 0) {
-			player = (GameObject)GameObject.Instantiate(hostPrefab, spawnTransform.position, spawnTransform.rotation);
+
+
+		client.irVisible = irVisible;
+
+		if (numPlayers == 0)
+			client.tooltip = "Host";
+		if (numPlayers == 1)
+			client.tooltip = "Client CENTRE";
+		if (numPlayers == 2)
+			client.tooltip = "Client CENTRE";
+		if (numPlayers == 3)
+			client.tooltip = "Client RIGHT";
+
+		if(irVisible)
+			client.tooltip = client.tooltip + " (IR)";
+
+
+		if (isHost) {
 			player.transform.parent = hostCentre;
+			//client.target = getTarget (numPlayers);
 		} else {
-			player = (GameObject)GameObject.Instantiate(playerPrefab, spawnTransform.position, spawnTransform.rotation);
-			ClientCamera cc = (ClientCamera)player.GetComponent ("ClientCamera");
-			cc.target = getTarget (c);
+			client.target = getTarget (numPlayers);
 		}
 			
 		NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 	
+
+		client.IR (irVisible);
+
 	}
 }
