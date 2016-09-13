@@ -35,5 +35,9 @@ EditorBuildSettings:
     path: Assets/Almgp_grassyTerrain/scene.unity
   - enabled: 0
     path: Assets/Scenes/multi_display.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VisualisationScene02.unity
+  - enabled: 0
+    path: Assets/Scenes/VisualisationScene03.unity
+  - enabled: 1
+    path: Assets/Scenes/VisualisationScene04.unity
