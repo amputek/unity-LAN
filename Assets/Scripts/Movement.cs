@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //print("yo im a player");
-        moveSpeed = 6f;
+        moveSpeed = 50f;
 	}
 	
 	// Update is called once per frame

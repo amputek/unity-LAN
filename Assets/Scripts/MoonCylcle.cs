@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ChopperMovement : MonoBehaviour {
+public class MoonCylcle : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -10,7 +10,6 @@ public class ChopperMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        // put general rotation here
-        transform.Rotate(0, -0.2f, 0);
+        transform.Rotate(0, 0, 0.05f);
     }
 }
