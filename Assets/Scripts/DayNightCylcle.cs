@@ -21,14 +21,13 @@ public class DayNightCylcle : MonoBehaviour {
     void LightIntensity ()
     {
         // Use Lerp
-        // Figure out why sky turns blue!!!
-        if (transform.rotation.eulerAngles.x > 210 & transform.rotation.eulerAngles.x < 320)
+        if (transform.rotation.eulerAngles.x > 200 & transform.rotation.eulerAngles.x < 340)
         {
-            light.intensity = 0.1f;
+            light.intensity = Mathf.Lerp(light.intensity, 0.05f, Time.deltaTime * 0.5f);
         }
-        else
+        if (transform.rotation.eulerAngles.x > 200 & transform.rotation.eulerAngles.x > 340)
         {
-            light.intensity = 1.0f;
+            light.intensity = Mathf.Lerp(light.intensity, 2f, Time.deltaTime * 0.5f);
         }
     }
 }
