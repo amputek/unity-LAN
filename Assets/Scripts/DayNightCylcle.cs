@@ -24,7 +24,7 @@ public class DayNightCylcle : MonoBehaviour {
         // Figure out why sky turns blue!!!
         if (transform.rotation.eulerAngles.x > 210 & transform.rotation.eulerAngles.x < 320)
         {
-            light.intensity = 0.01f;
+            light.intensity = 0.1f;
         }
         else
         {
