@@ -7,7 +7,6 @@ using UnityStandardAssets.ImageEffects;
 [NetworkSettings(channel=0,sendInterval=0.05f)]
 public class ClientCamera : NetworkBehaviour {
 
-	public Camera myCamera;
 	public float posSpeed = 3.0f;
 	public float rotSpeed = 15.0f;
 
@@ -20,22 +19,25 @@ public class ClientCamera : NetworkBehaviour {
 	[SyncVar]
 	public string tooltip = "Default";
 
-	public Text text;
-
-	public ColorCorrectionCurves colorCorrection;
-	public BloomOptimized bloom;
+	private Text text;
 
 
 	void Start(){
+
+
 		if (!isLocalPlayer) {
 			//In the Client's Scene, cameras that don't belong to this specific Player are disabled
-			myCamera.enabled = false;
+			//myCamera.enabled = false;
+			transform.Find ("Camera").GetComponent<Camera> ().enabled = false;
 		} else {
+
 			IR(irVisible);
+			GameObject t = transform.Find ("Camera/Canvas/Text").gameObject;
+			Text text = t.GetComponent<Text>();
+
 			text.text = tooltip;
 		}
-
-
+			
 		GameObject[] testObjects = GameObject.FindGameObjectsWithTag ("Test");
 		foreach (GameObject obj in testObjects) {
 			obj.SetActive (false);
@@ -55,28 +57,24 @@ public class ClientCamera : NetworkBehaviour {
 		//if client can see IR objects, set these objects active for this client.
 		//otherwise, turn em off
 
-		GameObject[] irVisibleObjects = GameObject.FindGameObjectsWithTag ("IR");
 
-	
+		GameObject cam = transform.Find("Camera").gameObject;
+		ColorCorrectionCurves colorCorrection = cam.GetComponent<ColorCorrectionCurves>();
+		BloomOptimized bloom = cam.GetComponent<BloomOptimized>();
+
+
 		//if ir capable, ambient light is FULL, IR objects are VISIBLE, and bloom/desaturation are ACTIVE
 		//otherwise, it's night time
-		if (irVisible) {
-			RenderSettings.ambientIntensity = 1.5f;
-			RenderSettings.reflectionIntensity = 1.0f;
-			foreach (GameObject obj in irVisibleObjects) {
-				obj.SetActive (true);
-			}
-			bloom.enabled = true;
-			colorCorrection.enabled = true;
-		} else {
-			RenderSettings.ambientIntensity = 0.2f;
-			RenderSettings.reflectionIntensity = 0.2f;
-			foreach (GameObject obj in irVisibleObjects) {
-				obj.SetActive (false);
-			}
-			bloom.enabled = false;
-			colorCorrection.enabled = false;
+
+		RenderSettings.ambientIntensity    = irVisible ? 1.0f : 0.1f;
+		RenderSettings.reflectionIntensity = irVisible ? 0.5f : 0.1f;
+		foreach (GameObject obj in GameObject.FindGameObjectsWithTag ("IR")) {
+			obj.SetActive (irVisible);
 		}
+		bloom.enabled = irVisible;
+		colorCorrection.enabled = irVisible;
+
+
 			
 	}
 
@@ -90,8 +88,6 @@ public class ClientCamera : NetworkBehaviour {
 		
 	//	transform.position = Vector3.MoveTowards(transform.position, target.position, posSpeed * Time.deltaTime);
 		transform.position = Vector3.Lerp (transform.position, target.position, posSpeed * Time.deltaTime);
-
-	//	if( Quaternion.Angle( transform.rotation, target.rotation) > 0.1 )
 		transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, rotSpeed * Time.deltaTime);
 
 	}

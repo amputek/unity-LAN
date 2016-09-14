@@ -17,15 +17,10 @@ public class PlayerController : MonoBehaviour
 		var x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
 		var z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
-		//transform.Rotate(0, x, 0);
-	//	transform.Translate(x, 0, z);
-
 		Vector3 mvt = new Vector3 (x, 0, z);
 
-	//	mvt = transform.TransformDirection(mvt);
-
-//		controller.Move (mvt);
-
+		//mvt = transform.TransformDirection(mvt);
+		//controller.Move (mvt);
 
 		transform.Translate (mvt);
 
