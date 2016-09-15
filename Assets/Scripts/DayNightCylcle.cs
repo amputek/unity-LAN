@@ -27,7 +27,7 @@ public class DayNightCylcle : MonoBehaviour {
         }
         if (transform.rotation.eulerAngles.x > 200 & transform.rotation.eulerAngles.x > 340)
         {
-            light.intensity = Mathf.Lerp(light.intensity, 1.5f, Time.deltaTime * 0.5f);
+            light.intensity = Mathf.Lerp(light.intensity, 1f, Time.deltaTime * 0.5f);
         }
     }
 }
