@@ -4,6 +4,7 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
     public float moveSpeed;
+    public Light spotlightIR;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +23,16 @@ public class Movement : MonoBehaviour {
         {
             transform.Translate(0f, -moveSpeed / 2 * Time.deltaTime, 0f);
         }
-        
+
+        if (Input.GetKeyDown("i"))
+        {
+            spotlightIR.intensity = 2f;
+        }
+
+        if (Input.GetKeyDown("o"))
+        {
+            spotlightIR.intensity = 0f;
+        }
 
     }
 }

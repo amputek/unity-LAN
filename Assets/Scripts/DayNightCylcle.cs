@@ -5,15 +5,24 @@ public class DayNightCylcle : MonoBehaviour {
 
     public Light light;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         light = GetComponent<Light>();
-	
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(0.1f, 0, 0);
+
+        if (Input.GetKey(KeyCode.P))
+        {
+            transform.Rotate(1f, 0, 0);
+        }
+
+        if (Input.GetKey(KeyCode.L))
+        {
+            transform.Rotate(-1f, 0, 0);
+        }
+
         LightIntensity();
 
     }
@@ -23,11 +32,11 @@ public class DayNightCylcle : MonoBehaviour {
         // Use Lerp
         if (transform.rotation.eulerAngles.x > 200 & transform.rotation.eulerAngles.x < 340)
         {
-            light.intensity = Mathf.Lerp(light.intensity, 0.05f, Time.deltaTime * 0.5f);
+            light.intensity = Mathf.Lerp(light.intensity, 0.05f, Time.deltaTime * 0.3f);
         }
         if (transform.rotation.eulerAngles.x > 200 & transform.rotation.eulerAngles.x > 340)
         {
-            light.intensity = Mathf.Lerp(light.intensity, 1f, Time.deltaTime * 0.5f);
+            light.intensity = Mathf.Lerp(light.intensity, 1f, Time.deltaTime * 0.3f);
         }
     }
 }
