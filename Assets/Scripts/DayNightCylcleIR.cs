@@ -15,12 +15,12 @@ public class DayNightCylcleIR : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.P))
         {
-            transform.Rotate(1f, 0, 0);
+            transform.Rotate(10f * Time.deltaTime, 0, 0);
         }
 
         if (Input.GetKey(KeyCode.L))
         {
-            transform.Rotate(-1f, 0, 0);
+            transform.Rotate(-10f * Time.deltaTime, 0, 0);
         }
 
         LightIntensity();
@@ -36,7 +36,7 @@ public class DayNightCylcleIR : MonoBehaviour {
         }
         if (transform.rotation.eulerAngles.x > 200 & transform.rotation.eulerAngles.x > 340)
         {
-            light.intensity = Mathf.Lerp(light.intensity, 6f, Time.deltaTime * 0.3f);
+            light.intensity = Mathf.Lerp(light.intensity, 5f, Time.deltaTime * 0.3f);
         }
     }
 }
