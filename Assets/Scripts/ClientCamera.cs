@@ -4,7 +4,6 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityStandardAssets.ImageEffects;
 
-[NetworkSettings(channel=0,sendInterval=0.05f)]
 public class ClientCamera : NetworkBehaviour {
 
 	public float posSpeed = 3.0f;
@@ -66,8 +65,8 @@ public class ClientCamera : NetworkBehaviour {
 		//if ir capable, ambient light is FULL, IR objects are VISIBLE, and bloom/desaturation are ACTIVE
 		//otherwise, it's night time
 
-		RenderSettings.ambientIntensity    = irVisible ? 1.0f : 0.1f;
-		RenderSettings.reflectionIntensity = irVisible ? 0.5f : 0.1f;
+		RenderSettings.ambientIntensity    = irVisible ? 1.0f : 0.3f;
+		RenderSettings.reflectionIntensity = irVisible ? 0.5f : 0.2f;
 		foreach (GameObject obj in GameObject.FindGameObjectsWithTag ("IR")) {
 			obj.SetActive (irVisible);
 		}

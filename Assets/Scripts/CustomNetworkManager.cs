@@ -43,7 +43,7 @@ public class CustomNetworkManager : NetworkManager {
 
 		Transform spawnTransform = GetStartPosition();
 	
-		GameObject player = (GameObject)GameObject.Instantiate(playerPrefab, spawnTransform.position, spawnTransform.rotation);
+		GameObject player = (GameObject)GameObject.Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
 		ClientCamera client = (ClientCamera)player.GetComponent ("ClientCamera");
 
 		client.irVisible = irVisible;
@@ -54,7 +54,8 @@ public class CustomNetworkManager : NetworkManager {
 			player.transform.parent = hostCentre;
 			//client.target = getTarget (numPlayers);
 		} else {
-			client.target = getTarget (numPlayers, out clientText);
+			//client.target = getTarget (numPlayers, out clientText);
+			player.transform.parent = getTarget(numPlayers, out clientText);
 		}
 			
 		client.tooltip = clientText + (irVisible ? " (IR)" : "");

@@ -249,16 +249,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcaaee86fb23c42678e898a67ec423da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LastSendTime: 0
-  m_SyncVarGuard: 0
-  m_MyView: {fileID: 0}
-  myCamera: {fileID: 2002756}
   posSpeed: 3.5
   rotSpeed: 5
   target: {fileID: 0}
   irVisible: 1
   tooltip: 44656661756c74
-  text: {fileID: 11476270}
 --- !u!114 &11454452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -494,7 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.03448276
+  m_SendInterval: 0.1
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
