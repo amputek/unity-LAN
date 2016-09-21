@@ -516,22 +516,18 @@ LODGroup:
   m_FadeMode: 2
   m_AnimateCrossFading: 1
   m_LODs:
-  - screenRelativeHeight: 0.37181467
+  - screenRelativeHeight: 0.63707834
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23000012644876618}
-  - screenRelativeHeight: 0.15887076
+  - screenRelativeHeight: 0.3819829
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23000011738299806}
-  - screenRelativeHeight: 0.010000001
+  - screenRelativeHeight: 0.04160333
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23000014155653870}
-  - screenRelativeHeight: 0.01
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 227000011196352060}
   m_Enabled: 1
 --- !u!227 &227000011196352060
 BillboardRenderer:
