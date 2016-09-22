@@ -5,15 +5,15 @@ public class CamMouseLook : MonoBehaviour {
 
     Vector2 mouseLook;
     Vector2 smoothV;
-    public float sensitivity = 5f;
-    public float smoothing = 2f;
+    public float sensitivity = 2f;
+    public float smoothing = 3f;
 
     GameObject character;
 
 	// Use this for initialization
 	void Start () {
         character = this.transform.parent.gameObject;
-	
+        Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame
@@ -28,6 +28,10 @@ public class CamMouseLook : MonoBehaviour {
 
         transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
         character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
-	    
+
+        if (Input.GetKeyDown("escape"))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
 	}
 }
