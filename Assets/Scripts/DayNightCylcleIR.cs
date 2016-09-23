@@ -4,10 +4,21 @@ using System.Collections;
 public class DayNightCylcleIR : MonoBehaviour {
 
     public Light light;
+    public Vector3 targetAngle = new Vector3(60f, -30f, 0f);
+    public float rotateSpeed = 1f;
+    private Vector3 currentAngle;
+    private Vector3 newAngle;
 
     // Use this for initialization
     void Start () {
         light = GetComponent<Light>();
+        currentAngle = transform.eulerAngles;
+        rotateSpeed = 1f;
+        newAngle = new Vector3(
+            Mathf.LerpAngle(currentAngle.x, targetAngle.x, rotateSpeed * Time.deltaTime),
+            Mathf.LerpAngle(currentAngle.y, targetAngle.y, rotateSpeed * Time.deltaTime),
+            Mathf.LerpAngle(currentAngle.z, targetAngle.z, rotateSpeed * Time.deltaTime));
+        transform.eulerAngles = newAngle;
     }
 	
 	// Update is called once per frame
@@ -34,9 +45,9 @@ public class DayNightCylcleIR : MonoBehaviour {
         {
             light.intensity = Mathf.Lerp(light.intensity, 0.05f, Time.deltaTime * 0.3f);
         }
-        if (transform.rotation.eulerAngles.x > 200 & transform.rotation.eulerAngles.x > 340)
+        else
         {
-            light.intensity = Mathf.Lerp(light.intensity, 5f, Time.deltaTime * 0.3f);
+            light.intensity = Mathf.Lerp(light.intensity, 4f, Time.deltaTime * 0.3f);
         }
     }
 }

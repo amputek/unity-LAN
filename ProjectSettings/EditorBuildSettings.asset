@@ -45,5 +45,7 @@ EditorBuildSettings:
     path: Assets/Scenes/VisualisationScene05.unity
   - enabled: 0
     path: Assets/Scenes/VisualisationScene08.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VisualisationScene09.unity
+  - enabled: 1
+    path: Assets/Scenes/VisualisationScene10.unity
