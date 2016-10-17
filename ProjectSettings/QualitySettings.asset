@@ -143,7 +143,7 @@ QualitySettings:
     shadowResolution: 1
     shadowProjection: 1
     shadowCascades: 4
-    shadowDistance: 1700
+    shadowDistance: 1600
     shadowNearPlaneOffset: 2
     shadowCascade2Split: 0.33333334
     shadowCascade4Split: {x: 0.044185907, y: 0.091028586, z: 0.19879542}
