@@ -1,23 +1,38 @@
 fileFormatVersion: 2
-guid: c3741f52691ee9f48a85fc84a1df359c
+guid: 88dc66232d9d47147a3020745f13ed78
+timeCreated: 1480611238
+licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: HH-65C_Dauphin_USCG_Hul2XHi_GearUP
-    100004: Rotor
-    100006: Rotor_Control
+    100002: Camera
+    100004: Canon
+    100006: Directional Light
+    100008: PowerSphere
+    100010: TankBody
+    100012: Thrusters
     400000: //RootNode
-    400002: HH-65C_Dauphin_USCG_Hul2XHi_GearUP
-    400004: Rotor
-    400006: Rotor_Control
-    2300000: HH-65C_Dauphin_USCG_Hul2XHi_GearUP
-    2300002: Rotor
-    3300000: HH-65C_Dauphin_USCG_Hul2XHi_GearUP
-    3300002: Rotor
-    4300000: Rotor
-    4300002: HH-65C_Dauphin_USCG_Hul2XHi_GearUP
-    11100000: //RootNode
+    400002: Camera
+    400004: Canon
+    400006: Directional Light
+    400008: PowerSphere
+    400010: TankBody
+    400012: Thrusters
+    2300000: Canon
+    2300002: PowerSphere
+    2300004: TankBody
+    2300006: Thrusters
+    3300000: Canon
+    3300002: PowerSphere
+    3300004: TankBody
+    3300006: Thrusters
+    4300000: Thrusters
+    4300002: PowerSphere
+    4300004: Canon
+    4300006: TankBody
+    7400000: Take 001
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -56,11 +71,11 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -78,9 +93,9 @@ ModelImporter:
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
-    skeletonHasParents: 0
+    skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
